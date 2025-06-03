@@ -1,0 +1,19 @@
+.line {
+  width: 100%;
+  height: 3px;
+  background: #000;
+  transition: all 0.3s ease;
+}
+.dark .line {
+  background: #fff;
+}
+
+.top-open {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.middle-open {
+  opacity: 0;
+}
+.bottom-open {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
