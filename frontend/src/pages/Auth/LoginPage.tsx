@@ -1,9 +1,11 @@
 import ThemeToggle from "../../components/Navbar/ThemeToggle";
-import { login } from "../../api/auth";
+import { loginApi } from "../../api/auth";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [credentials, setFormData] = React.useState({
     email: "",
@@ -17,14 +19,9 @@ const Login = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await login(credentials);
-    if (response.status === 200) {
-      // Assuming the response contains a token or user data
-      localStorage.setItem("token", response.data.token);
-      navigate("/home");
-    } else {
-      console.error("Login failed:", response.data.message);
-    }
+    const response = await loginApi(credentials);
+    login(response.data.token);
+    navigate("/");
   };
 
   return (

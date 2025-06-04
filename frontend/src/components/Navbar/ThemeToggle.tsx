@@ -15,7 +15,7 @@ export default function ThemeToggle() {
       root.classList.remove("dark");
       setIsDark(false);
     }
-  }, []);
+  }, [isDark]);
 
   const toggleTheme = () => {
     const root = window.document.documentElement;
@@ -34,7 +34,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+      className="absolute top-6 right-6 p-2 bg-gray-200 dark:bg-gray-700 rounded-full text-black dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition"
       aria-label="Toggle Theme"
     >
       {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

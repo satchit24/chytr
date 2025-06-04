@@ -6,6 +6,7 @@ import ProfilePage from "../pages/ProfilePage";
 import Navbar from "../components/Navbar/Navbar";
 import NotFound from "../pages/NotFound";
 import HomePage from "../pages/HomePage";
+import MediaCategoryPage from "../pages/MediaCategoryPage";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,15 @@ const AppRoutes = () => {
             <HomePage />
           </ProtectedRoute>
         }
+      />
+      <Route
+      path="/category/:mediaType"
+      element={
+        <ProtectedRoute>
+          <Navbar />
+          <MediaCategoryPage />
+        </ProtectedRoute>
+      }
       />
       <Route
         path="/profile"

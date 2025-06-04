@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Hamburger from "./Hamburger";
 import { getNavLinkClass } from "../../utils/classnames";
+import { useAuth } from "../../context/AuthContext";
+import LogoutButton from "../Buttons/LogoutButton";
 
 const navLinks = [
   { label: "Profile", path: "/profile" },
@@ -19,7 +21,7 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const { isAuthenticated } = useAuth();
   return (
     <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -40,6 +42,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {isAuthenticated() && <LogoutButton />}
           <ThemeToggle />
         </div>
 
@@ -81,6 +84,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {isAuthenticated() && <LogoutButton />}
           <ThemeToggle />
         </div>
       </div>

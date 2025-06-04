@@ -1,6 +1,6 @@
 import API from "./axios";
 
-export const signup = async (signupData: {
+export const signupApi = async (signupData: {
   username: string;
   email: string;
   password: string;
@@ -8,6 +8,6 @@ export const signup = async (signupData: {
   return API.post("/auth/register", signupData);
 };
 
-export const login = async (loginData: { email: string; password: string }) => {
+export const loginApi = async (loginData: { email: string; password: string }) => {
   return API.post("/auth/login", loginData);
 };

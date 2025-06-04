@@ -1,5 +1,5 @@
 import ThemeToggle from "../../components/Navbar/ThemeToggle";
-import { signup } from "../../api/auth";
+import { signupApi } from "../../api/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,22 +8,25 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    password: ""
+    password: "",
   });
-  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-    const handleSubmit = async (e: React.FormEvent)=> {
-      e.preventDefault();
-      try {
-        await signup(formData);
-        navigate("/login");
-      } catch (error:any) {
-        console.error("Signup failed:", error.response?.data?.message || error.message);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await signupApi(formData);
+      navigate("/login");
+    } catch (error: any) {
+      console.error(
+        "Signup failed:",
+        error.response?.data?.message || error.message
+      );
     }
   };
 
@@ -31,9 +34,12 @@ const Signup = () => {
     <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <ThemeToggle />
       <div className="max-w-5xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">Create Your Account</h1>
+        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
+          Create Your Account
+        </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          Join Chytr to track and share your favorite books, movies, music, and more.
+          Join Chytr to track and share your favorite books, movies, music, and
+          more.
         </p>
 
         <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
